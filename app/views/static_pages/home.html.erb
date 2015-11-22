@@ -1,0 +1,60 @@
+
+<h1 align= "center"><b>F.R.A.N.K.L.I.N.</b></h1>
+<p align="center"><%= image_tag("franklin.jpg", :alt => "logo", size: "120x140") %></p>
+
+
+<% if logged_in? %>
+
+<table width="40%" align="center">
+<!--   <tr>
+    <td colspan="2" align="center"><h3>Welcome Back</h3></td>
+  </tr> -->
+  <tr>
+    <td width="50%" align="center"><br><%= button_to "Saved Keys", passes_path, :class => "btn btn-primary btn-lg", :method => :get  %></td>
+    <td width="50%" align="center"><br><%= button_to " New Key ", pass_path, :class => "btn btn-primary btn-lg", :method => :get  %></td>
+
+  </tr>
+</table>
+
+
+<% else %>
+<h3 align="center">Log in here:</h3>
+
+<div class= “jumbotron jumbo-1”>
+  <%= form_for(:session, url: login_path) do |f| %>
+<table id="form">
+  <tr>
+    <td width="100%" align="center"><%= f.email_field :email, class: "input-large", placeholder: "Email" %></td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center"><br>
+      <%= f.password_field :password, class: "input-large", placeholder: "Password"%>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center"><br><%= f.submit "Log in" %></td>
+
+  </tr>
+  <tr>
+    <td> <br> </td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center">New User? <%= link_to "Sign up here.", :controller => 'users', :action => 'new' %></td>
+
+  </tr>
+  <tr>
+    <td width="100%" align="center"><br>Forgotten password? <%= link_to "Get help here.", :controller => 'static_pages', :action => 'help' %>
+
+    </td>
+  </tr>
+  </table>
+  <% end %>
+   <% end %>
+</div>
+
+
+
+

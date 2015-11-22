@@ -1,0 +1,12 @@
+<% if logged_in? %>
+<h1 align="center"><b>Account Settings</b></h1>
+
+<%= render 'form' %>
+
+<table width="10%" align="center">
+       <tr>
+         <td width="100%" align="center"><br><%= link_to 'View Profile', @user %></td>
+  </tr>
+</table>
+<% end %>
+

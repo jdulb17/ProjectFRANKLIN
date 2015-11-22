@@ -1,0 +1,24 @@
+<%= form_for(:session, url: login_path) do |f| %>
+<table width="60%" align="center">
+  <tr>
+    <td width="100%" align="center"><h1><b>Log In:</b></h1></td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center"><br><%= f.email_field :email, placeholder: "Email" %></td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center"><br><%= f.password_field :password, placeholder: "Password" %></td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center"><br><%= f.submit "Log in" %></td>
+  </tr>
+
+  <tr>
+    <td width="100%" align="center"><br>New user? <%= link_to "Sign up here.", :controller => 'users', :action => 'new' %></td>
+  </tr>
+</table>
+<% end %>
+

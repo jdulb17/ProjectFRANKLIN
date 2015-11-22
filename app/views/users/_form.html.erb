@@ -1,0 +1,50 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table width="50%" align="center">
+  <tr>
+  <div class="field">
+    <td width="30%" align="left"><br><%= f.label "Email:" %></td>
+    <td width="70%" align="center"><br><%= f.text_field :email, size: "40" %></td>
+  </div>
+  </tr>
+
+  <tr>
+  <div class="field">
+    <td width="30%" align="left"><br><%= f.label "Password:" %></td>
+    <td width="70%" align="center"><br><%= f.password_field :password, size: "40" %></td>
+  </div>
+  </tr>
+
+  <tr>
+  <div class="field">
+    <td width="30%" align="left"><br><%= f.label "Security question:" %></td>
+    <td width="70%" align="center"><br><%= f.text_field :question, size: "40" %></td>
+  </div>
+  </tr>
+
+  <tr>
+  <div class="field">
+    <td width="30%" align="left"><br><%= f.label "Answer:" %></td>
+    <td width="70%" align="center"><br><%= f.text_field :answer, size: "40" %></td>
+  </div>
+  </tr>
+
+  <tr>
+  <div class="actions">
+    <td colspan="2" align="center">
+    <br><%= f.submit "Save Changes"%>
+    </td>
+  </div>
+  </tr>
+</table>
+<% end %>

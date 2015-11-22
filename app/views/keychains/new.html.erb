@@ -1,0 +1,199 @@
+
+<p id="password" hidden></p>
+
+<h1 align="center"><b>New Key</b></h1>
+<div id="main">
+
+<div id="left">
+
+<%= form_for(@keychain) do |f| %>
+  <% if @keychain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@keychain.errors.count, "error") %> prohibited this keychain from being saved:</h2>
+
+      <ul>
+      <% @keychain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table width="100%" align="center">
+  <tr>
+    <td colspan="2" align="left"><b>Name of Key:</b></td>
+  </tr>
+
+  <tr>
+    <td colspan="2" align="left"><br><%= f.text_field :keyname, size: "45", placeholder: "Enter a name" %></td>
+  </tr>
+
+ <tr>
+   <td colspan="2" align="left"><br><b>Password to Save:</b></td>
+  </tr>
+
+  <tr>
+    <td colspan="2" align="left"><br><%= f.text_field :keyval, class: "input-large", id: "password", placeholder: "(you can edit manually)", :id=>"password_val", size: "45" %></td>
+  </tr>
+
+  <tr>
+    <td width="50%">&nbsp;</td>
+    <td width="50%" align="center"><br><%= f.submit "Save Key" %></td>
+  </tr>
+</table>
+</div>
+<% end %>
+
+
+    <div id="right">
+<table width="100%">
+
+  <tr>
+    <td colspan="4" align="center"><b>Password Helper:</td>
+  </tr>
+
+  <tr>
+    <td width="70%">Lowercase Letters: </td>
+    <td width="10%"><input type="button" value="-" id="moins" onclick="minusLow()"></td>
+    <td width="10%"><input readonly type="text" size="1" value="0" id="lowCount"></td>
+    <td width="10%"><input type="button" value="+" id="plus" onclick="plusLow()"></td>
+  </tr>
+
+  <tr>
+    <td width="70%">Uppercase Letters: </td>
+    <td width="10%"><input type="button" value="-" id="moins" onclick="minusUp()"></td>
+    <td width="10%"><input readonly type="text" size="1" value="0" id="upperCount"></td>
+    <td width="10%"><input type="button" value="+" id="plus" onclick="plusUp()"></td>
+  </tr>
+
+  <tr>
+    <td width="70%">Symbols: </td>
+    <td width="10%"><input type="button" value="-" id="moins" onclick="minusSym()"></td>
+    <td width="10%"><input readonly type="text" size="1" value="0" id="symCount"></td>
+    <td width="10%"><input type="button" value="+" id="plus" onclick="plusSym()"></td>
+  </tr>
+
+  <tr>
+    <td width="70%">Numbers: </td>
+    <td width="10%"><input type="button" value="-" id="moins" onclick="minusNum()"></td>
+    <td width="10%"><input readonly type="text" size="1" value="0" id="numCount"></td>
+    <td width="10%"><input type="button" value="+" id="plus" onclick="plusNum()"></td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center"><button onclick="myFunction()">Generate</button></td>
+  </tr>
+</table>
+  </div>
+<br><br><br><br><br><br><br><br>
+</div>
+
+<script>
+    var lowCount = 0;
+    var upperCount = 0;
+    var symCount = 0;
+    var numCount = 0;
+    var password =[];
+    var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+      var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  var syms = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+
+    var upCountEl = document.getElementById("upperCount");
+    var lowCountEl = document.getElementById("lowCount");
+    var symCountEl = document.getElementById("symCount");
+    var numCountEl = document.getElementById("numCount");
+    function plusUp(){
+        upperCount++;
+        if (upperCount > 16)
+          upperCount = 16;
+        upCountEl.value = upperCount;
+    }
+    function minusUp(){
+        upperCount--;
+        if (upperCount < 0)
+          upperCount = 0;
+        upCountEl.value = upperCount;
+    }
+
+      function plusLow(){
+        lowCount++;
+        if (lowCount > 16)
+          lowCount = 16;
+        lowCountEl.value = lowCount;
+    }
+
+    function minusLow(){
+        lowCount--;
+        if (lowCount < 0)
+          lowCount = 0;
+        lowCountEl.value = lowCount;
+    }
+
+      function plusSym(){
+        symCount++;
+        if (symCount > 16)
+          symCount = 16;
+        symCountEl.value = symCount;
+    }
+
+    function minusSym(){
+        symCount--;
+        if (symCount < 0)
+          symCount = 0;
+        symCountEl.value = symCount;
+    }
+
+      function plusNum(){
+        numCount++;
+        if (numCount > 16)
+          numCount = 16;
+        numCountEl.value = numCount;
+    }
+
+    function minusNum(){
+        numCount--;
+        if (numCount < 0)
+          numCount = 0;
+        numCountEl.value = numCount;
+    }
+
+  function myFunction() {
+    password = [];
+  for (i = 0; i < lowCount; i++) {
+    var rand = Math.floor(Math.random()*26)
+    var letter = lower[rand];
+    password.push(letter);
+  }
+  for (i = 0; i < upperCount; i++) {
+    var rand = Math.floor(Math.random()*26)
+    var letter = upper[rand];
+    password.push(letter);
+  }
+  for (i = 0; i < numCount; i++) {
+    var rand = Math.floor(Math.random()*10)
+    var letter = nums[rand];
+    password.push(letter);
+  }
+  for (i = 0; i < symCount; i++) {
+    var rand = Math.floor(Math.random()*10)
+    var letter = syms[rand];
+    password.push(letter);
+  }
+    shuffle(password);
+
+    document.getElementById("password").innerHTML = password.join("");
+    $("#password_val").val(password.join(""));
+
+
+}
+
+  function shuffle(o){
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+
+
+  }
+
+</script>
+
+

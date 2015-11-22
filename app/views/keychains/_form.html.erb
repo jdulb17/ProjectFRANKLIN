@@ -1,0 +1,25 @@
+<%= form_for(@keychain) do |f| %>
+  <% if @keychain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@keychain.errors.count, "error") %> prohibited this keychain from being saved:</h2>
+
+      <ul>
+      <% @keychain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Name of key:" %><br>
+    <%= f.text_field :keyname %>
+  </div>
+  <div class="field">
+    <%= f.label "Key value:" %><br>
+    <%= f.text_field :keyval %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Key" %>
+  </div>
+<% end %>

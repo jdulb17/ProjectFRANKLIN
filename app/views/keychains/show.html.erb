@@ -1,0 +1,32 @@
+<% if logged_in? %>
+
+<p id="notice"><%= notice %></p>
+<table width="50%" align="center">
+  <tr>
+    <td colspan="2" align="center"><h1><b>Key Info:</b></h1></td>
+  </tr>
+
+  <tr>
+    <td width="30%" align="right" id="td1"><h2><b>Name:&nbsp;&nbsp;</b></h2></td>
+    <td width="70%" align="center" id="td2"><h3><%= @keychain.keyname %></h3></td>
+  </tr>
+
+<tr>
+  <td width="30%" align="right" id="td1"><h2><b>Password:&nbsp;&nbsp;</b></h2></td>
+  <td width="70%" align="center" id="td2"><h3><%= AESCrypt.decrypt(@keychain.keyval, @keychain.keyname) %></h3></td>
+</tr>
+
+  <tr>
+    <td colspan="2">
+      <table width="100%">
+        <tr>
+          <td width="50%" align="center"><br><%= link_to 'Key List', passes_path %></td>
+          <td width="50%" align="center"><br><%= link_to 'Edit', edit_keychain_path(@keychain) %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<% end %>
+

@@ -1,0 +1,27 @@
+<% if logged_in? %>
+
+<p id="notice"><%= notice %></p>
+<h1><b>Profile:</b></h1>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @user.question %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @user.answer %>
+</p>
+
+
+</table>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+<% end %>
+

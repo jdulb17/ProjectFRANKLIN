@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1 align="center">All Registered Users</h1>
+<% if current_user.admin == true && current_user != @user %>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Question</th>
+      <th>Answer</th>
+      <th colspan="3"></th>
+    </tr>
+    <tr>
+      <td colspan="4"><%= link_to 'New User', new_user_path %></td>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email%></td>
+        <td><%= user.question %></td>
+        <td><%= user.answer %></td>
+        <td><%= link_to 'show', user %></td>
+        <td><%= link_to 'edit', edit_user_path(user) %></td>
+        <td><%= link_to 'destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+
+      </tr>
+  </tbody>
+</table>
+
+
+<% else %>
+<p align="center" id="red"> <br>You do not have permission to view this page, please return to the previous page.<br><br><%= link_to "Home", root_path %></p>
+<% end %>
+
+
